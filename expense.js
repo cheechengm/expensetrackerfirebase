@@ -7,8 +7,7 @@ const totalDisplay = document.getElementById('total');
 let totalExpense = 0;
 
 // Function to add expense
-// Function to add expense
-function addExpense(description, amount, id, timestamp) {
+function addExpense(description, amount, userId, id, timestamp) {
     // Check if timestamp is defined and convert it to a Date object
     const date = timestamp ? new Date(timestamp.toDate()) : new Date();
     const dateString = date.toLocaleDateString(); // Format the date as a string
@@ -38,8 +37,6 @@ function addExpense(description, amount, id, timestamp) {
     totalDisplay.textContent = totalExpense.toFixed(2); // Update total with two decimal places
 }
 
-
-
 // Function to delete expense from the UI and Firestore
 function deleteExpense(id) {
     const expenseItem = document.querySelector(`[data-id="${id}"]`);
@@ -68,7 +65,6 @@ function deleteExpense(id) {
         });
 }
 
-
 // Event listener for deleting expenses
 expenseList.addEventListener('click', function(event) {
     if (event.target.classList.contains('delete-btn')) {
@@ -77,17 +73,15 @@ expenseList.addEventListener('click', function(event) {
     }
 });
 
-
-// Function to load expenses from Firestore// Function to load expenses from Firestore
-function loadExpenses() {
-    db.collection('expenses').get().then(snapshot => {
+// Function to load expenses from Firestore
+function loadExpenses(userId) {
+    db.collection('expenses').where("userId", "==", userId).get().then(snapshot => {
         snapshot.docs.forEach(doc => {
             const expenseData = doc.data();
-            addExpense(expenseData.description, expenseData.amount, doc.id, expenseData.timestamp);
+            addExpense(expenseData.description, expenseData.amount, userId, doc.id, expenseData.timestamp);
         });
     });
 }
-
 
 // Event listener for expense form submission
 expenseForm.addEventListener('submit', function(event) {
@@ -99,21 +93,23 @@ expenseForm.addEventListener('submit', function(event) {
         return;
     }
 
-    addExpense(description, amount);
+    const userId = firebase.auth().currentUser.uid; // Get the current user ID
+    addExpense(description, amount, userId);
 
     // Save expense to Firestore
-    saveExpenseToFirestore(description, amount);
+    saveExpenseToFirestore(description, amount, userId);
 
     // Reset form fields
     expenseForm.reset();
 });
 
 // Function to save expense to Firestore
-function saveExpenseToFirestore(description, amount) {
+function saveExpenseToFirestore(description, amount, userId) {
     const expenseData = {
         description: description,
         amount: amount,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        userId: userId // Associate the expense with the user ID
     };
 
     db.collection('expenses').add(expenseData)
@@ -126,4 +122,9 @@ function saveExpenseToFirestore(description, amount) {
 }
 
 // Load expenses from Firestore when the page loads
-window.addEventListener('load', loadExpenses);
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        const userId = user.uid;
+        loadExpenses(userId);
+    }
+});
