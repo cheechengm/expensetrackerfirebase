@@ -103,7 +103,7 @@ function login() {
             document.getElementById("email").value = "";
             document.getElementById("password").value = "";
             // Redirect to dashboard or perform any other action
-            window.location.href = "budget.html"; // Example redirect to dashboard page
+            window.location.href = "expense.html"; // Example redirect to dashboard page
         })
         .catch(function(error) {
             // Error handling
