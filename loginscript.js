@@ -103,7 +103,7 @@ function login() {
             document.getElementById("email").value = "";
             document.getElementById("password").value = "";
             // Redirect to dashboard or perform any other action
-            window.location.href = "index.html"; // Example redirect to dashboard page
+            window.location.href = "budget.html"; // Example redirect to dashboard page
         })
         .catch(function(error) {
             // Error handling
@@ -114,4 +114,14 @@ function login() {
             errorMessage.innerText = errorMessage;
         });
 }
-
+function logout() {
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        console.log("User logged out successfully.");
+        // Redirect to login page or perform any other action
+        window.location.href = "index.html"; // Example redirect to login page
+    }).catch(function(error) {
+        // An error happened.
+        console.error("Error logging out:", error);
+    });
+}
