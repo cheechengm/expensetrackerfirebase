@@ -10,13 +10,13 @@
 };
 
 firebase.initializeApp(config);
-           // const auth = firebase.auth()
+            const auth = firebase.auth();
             const db = firebase.firestore();
             //const database =firebase.database(); //real time database
             db.settings({ timestampsInSnapshots: true }); 
 
             // Get a reference to the Firebase authentication service
-            //const auth = firebase.auth();
+          //  const auth = firebase.auth();
 
             // Get a reference to the Firebase Realtime Database service
             //const database = firebase.database();
