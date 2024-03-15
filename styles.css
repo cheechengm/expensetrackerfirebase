@@ -45,24 +45,48 @@ button {
     border-radius: 4px;
 }
 
+/* Style for the expense list container */
+.expense-list {
+    width: 100%; /* Make the container fill the entire width of its parent */
+}
+
+/* Style for the expense list table */
+.expense-list table {
+    width: 100%; /* Make the table fill the entire width of its container */
+    border-collapse: collapse; /* Collapse table borders */
+}
+
+/* Style for the table header */
+.expense-list thead {
+    background-color: #f0f0f0; /* Light gray background color for the header */
+}
+
+/* Style for table cells */
+.expense-list td {
+    padding: 8px; /* Add padding to the cells for spacing */
+    border: 1px solid #ddd; /* Add borders to the cells */
+    text-align: left; /* Align cell content to the left */
+}
+
+/* Style for table header cells */
+.expense-list th {
+    padding: 8px; /* Add padding to the header cells for spacing */
+    border: 1px solid #ddd; /* Add borders to the header cells */
+    text-align: left; /* Align header cell content to the left */
+}
+
+/* Style for table rows */
+.expense-list tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
+}
+
+
 /* Hover effect for the button */
 button:hover {
     background-color: #0056b3;
 }
 
-/* Margin for the expense list */
-#expense-list {
-    margin-bottom: 20px;
-}
 
-/* Styling for each expense item */
-.expense-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    background-color: #fff; /* Adding a white background to each item */
-}
 
 /* Styling for the delete button */
 .delete-btn {
@@ -73,7 +97,51 @@ button:hover {
     border-radius: 4px;
 }
 
+
+
 /* Hover effect for the delete button */
 .delete-btn:hover {
     background-color: #bd2130;
 }
+
+
+/* Style for the table container */
+#monthly-summary {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Style for table header */
+#monthly-summary th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Style for table body */
+#monthly-summary td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style for even rows */
+#monthly-summary tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect for table rows */
+#monthly-summary tbody tr:hover {
+    background-color: #e6f7ff;
+}
+
+#monthly-expenses-chart {
+    display: block;
+    margin-top: 20px; /* Add some space between the canvas and other elements */
+    width: 100%; /* Ensure the canvas fills its container */
+    max-width: 800px; /* Limit the maximum width of the canvas */
+    margin-left: auto; /* Center the canvas horizontally */
+    margin-right: auto;
+}
+
