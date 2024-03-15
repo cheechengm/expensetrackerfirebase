@@ -2,6 +2,7 @@
 webapp that allows login and stores individual expenses data tagged to each individual accounts:
 <br>
 It provides total monthly expense and plots total monthly expenses by categories as shown below.
+<br>
 link: https://cheechengm.github.io/expensetrackerfirebase/
 
 
