@@ -6,18 +6,92 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-
         <h1>Expense Tracker</h1>
         <form id="expense-form">
-            <label for="expense">Expense:</label>
-            <input type="text" id="expense" placeholder="Enter expense description">
+            <label for="description">Description:</label>
+            <input type="text" id="description" placeholder="Enter expense description">
             <label for="amount">Amount:</label>
             <input type="number" id="amount" step="0.01" placeholder="Enter expense amount">
+            <label for="category">Category:</label><br>
+            <select id="category" name="category"> <!-- New category dropdown -->
+                <option value="food">Food</option>
+                <option value="shopping">Shopping</option>
+                <option value="housing">Housing</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="transport">Transport</option>
+                <option value="utilities">Utilities</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="education">Education</option>
+                <option value="travel">Travel</option>
+                <!-- Add more options as needed -->
+            </select><br>
+            <br>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date">
+            <br>
             <button type="submit">Add Expense</button>
-        
         </form>
-        <div id="expense-list"></div>
-        <div id="total-expenses">Total Expenses: $<span id="total">0</span></div>
+        <div id="expense-list" class="expense-list">
+            <table>
+                <thead>
+                    <tr class="expense-list-header">
+                        <td class="description">Description</td>
+                        <td class="amount">Amount</td>
+                        <td class="category">Category</td>
+                        <td class="date">Date</td>
+                        <td class="delete">Delete</td>
+                        <td class="edit">Edit</td>
+                    </tr>
+                </thead>
+                <tbody class="expense-list-body">
+                    <!-- Expense items will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <br>
+        <div id="total-expenses"><strong>Total Expenses:</strong> $<span id="total">0</span></div>
+
+        <br>
+        <!--
+        <select id="month-select">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+
+        <button id="show-monthly-expenses-btn"></button>-->
+        <br>
+        <h2>Monthly Expense Summary</h2>
+        <table id="monthly-summary">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Total Expense</th>
+                </tr>
+            </thead>
+            <tbody id="monthly-summary-body">
+                <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+        
+        
+        <canvas id="monthly-expenses-chart" ;width: 400px; height: 200px;></canvas>
+
+        
+
+
+
+
          
           
          <!-- Add a logout button -->
@@ -26,6 +100,7 @@
         <script src="firebase.js"></script>
         <script src="expense.js"></script>
         <script src="loginscript.js"></script>
-        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     </body>
 </html>
